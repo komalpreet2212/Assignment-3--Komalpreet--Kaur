@@ -2,6 +2,7 @@
 
 // IIFE - Immediately Invoked Function Expression
 // anonyms self execuing funtion 
+  
 (function(){
         "Use Strict"
 
@@ -27,6 +28,7 @@
             AboutButton.addEventListener("mouseout", AboutButtonOut);
 
     }
+        
     function text() {
         let text = document.getElementById("text");
 
