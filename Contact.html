@@ -27,7 +27,7 @@
                   <a class="nav-link" href="./About.html"><i class="fa fa-info-circle fa-lg"></i> About</a>
                 </li>
                 <li class="nav-item active">
-                        <a class="nav-link" href="./Contact.html"><i class="fa fa-contao fa-lg"></i> Contact Us <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="./Contact.html"><i class="fa fa-mobile fa-lg"></i> Contact Us <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="./project.html"><i class="fa fa-product-hunt fa-lg"></i> ProjectsPage </a>
@@ -40,60 +40,60 @@
           <!-- Contact Form -->
           <div id="allPage">
             <article>
-                <img src="./Assets/Images/NBlogo.jpg" alt="NBlogo" srcset="" align="right" width="150px" height="500px"> <br>
-                <img src="./Assets/Images/NBlogo.jpg" alt="NBlogo" srcset="" align="left" width="150px" height="500px"> <br>
-                <h2>Member Registration</h2>
-                <h3>Please complete all the fields below:</h3>
-                    <form>	
-                        <fieldset class="text">
-                            <label for="fname">First Name:</label>
-                            <input type="text" id="fname" required="required" />
-                            <p id="firstNameError" class="errorMsg"></p>
-                            <label for="lname">Last Name:</label>
-                            <input type="text" id="lname" required="required" />
-                            <p id="lastNameError" class="errorMsg"></p>
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" required="required" />
-                            <p id="addressError" class="errorMsg"></p>
-                            <label for="city">City:</label>
-                            <input type="text" id="city" required="required" />
-                            <p id="cityError" class="errorMsg"></p>
-    
-                            <label for="province">Province:</label>
-                            <select id="province" name="province" class="btn btn-danger" required="required" onchange="validateProvince()">
-                                <option value=""></option>
-                                <option value="QC">QC</option>
-                                <option value="ON">ON</option>
-                                <option value="MN">MN</option>
-                                <option value="SK">SK</option>
-                                <option value="AB">AB</option>
-                                <option value="BC">BC</option>
-                            </select>
-                            <p id="provinceError" class="errorMsgS"></p>
-    
-    
-                            <label for="postalCode">Postal Code:</label>
-                            <input type="text" id="postalCode" required="required" />
-                            <p id="postalCodeError" class="errorMsg"></p>
-    
-                            <label for="age">Age:</label>
-                            <input type="number" id="age" required="required" onchange="validateAge()" />
-                            <p id="ageError" class="errorMsg"></p>
-                            <label for="pw1">Password:</label>
-                            <input type="password" id="pw1" required="required" />
-                            <p id="passwordError" class="errorMsg"></p>
-                            <label for="pw2">Confirm:</label>
-                            <input type="password" id="pw2" required="required" />
-                            <p id="confirmError" class="errorMsg"></p>
-                            <label for="email">Email Address:</label>
-                            <input type="email" id="email" required="required" />
-                            <p id="emailError" class="errorMsg"></p>
-                        </fieldset>
-    
-                        <input type="submit" class="btn btn-primary" id="createBtn" value="Register Now" onclick="validateForm()" />
-                        <input type="button" class="btn btn-primary" id="reset" value="Clear Form" onclick="reload()" />
-                    </form>
-                    <blockquote>Thank you! We pay attention to your feedback!</blockquote>
+                <h1><img alt="Member Registration" height="150" src="./Assets/Images/logo.png" width="974"></h1>
+                  <header>
+                      <h1>Member Registration</h1>
+                      <h4 class="auto-style1">Please complete all the fields below:</h4>                                
+                  </header>
+                 <form name="myForm" action="mailto:jdoe27@someplace.ca" onsubmit="return validateForm()" method="post">
+                  <table style="width: 100%">
+                      <tr>
+                        <td class="leftColumn">First Name:</td>
+                        <td class="rightColumn"><input type="text" name="First Name"></td>
+                      </tr>
+                      <tr>
+                      <td class="leftColumn">Last Name:</td>
+                      <td class="rightColumn"><input type="text" name="Last Name"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">Address:</td>
+                        <td class="rightColumn"><input type="text" name="Address"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">City:</td>
+                        <td class="rightColumn"><input type="text" name="City"></td>
+                      </tr>
+                      <tr>
+                         <td class="leftColumn">Postal Code:</td>
+                         <td class="rightColumn"><input type="text" name="Postal Code"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">Province:</td>
+                        <td class="rightColumn"><input type="text" id="province" name="Province"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">Age:</td>
+                        <td class="rightColumn"><input type="number" name="Age"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">Password</td>
+                        <td class="rightColumn"><input type="password" name="Password"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">Confirm Password:</td>
+                        <td class="rightColumn"><input type="password" name="Confirm Password"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn">E-mail:</td>
+                        <td class="rightColumn"><input type="text" name="Email"></td>
+                      </tr>
+                      <tr>
+                        <td class="leftColumn"><input type="submit" name="register" value="Register Now"></td>
+                        <td class="rightColumn"><input type="reset" name="clear" value="Clear Form"></td>
+                      </tr>
+                  </table>
+                  <b> <blockquote>Thank you! We pay attention to your feedback!</blockquote> </b>
+              </form>                       
             </article>
     </div>   
 

@@ -91,300 +91,58 @@ window.onload = Start;
 
 
 
-var validateStart=0;
-
-function validateEmail() {
-    var emailInput = document.getElementById("email");
-    var errorDiv = document.getElementById("emailError");
-    errorDiv.innerHTML = "Please provide a valid email address";
-    
-    // replace with conditional expression
-    var RegExp = /^([a-zA-Z0-9_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/;
-    if(RegExp.test(emailInput.value)){
-        errorDiv.style.display = "none";
-        emailInput.style.background = "#88ff88";
-        errorDiv.innerHTML = "";
-    }
-    else{
-        errorDiv.style.display = "block";
-        errorDiv.style.color = "#8888ff";
-        if(validateStart>=2){
-            errorDiv.style.color = "red";
+function validateForm() {
+    var elements = document.getElementsByTagName("input");
+    for (var i = 0; i < elements.length; i++) {
+        if(elements[i].value == "") {
+            alert(elements[i].name + ' is required.');
+            return false;
         }
-        emailInput.style.background = "#ffffff";
     }
-}
-
-// validate entered password
-function validatePassword() {
-    var pw1Input = document.getElementById("pw1");
-    var errorDiv = document.getElementById("passwordError");
-    errorDiv.innerHTML = ">5 up,low case,number,and special characters.";
-        // replace with conditional expression
-    var p = pw1Input.value;
-    var Rega_z = /[a-z]+/;
-    var RegA_Z = /[A-Z]+/;
-    var Reg0_9 = /[0-9]+/;
-    var RegExp = /[!@#$%^&()]+/;
-    //if (pw1Input.value.length < 6) {
-    if (Rega_z.test(p) && RegA_Z.test(p) && Reg0_9.test(p) && RegExp.test(p) && p.length > 5) {
-        // remove any password error styling and message
-        errorDiv.style.display = "none";
-        errorDiv.innerHTML = "";
-        pw1Input.style.background = "#88ff88";
-        
-    }else{
-        errorDiv.style.display = "block";
-        errorDiv.style.color = "#8888ff";
-        if(validateStart>=2){
-            errorDiv.style.color = "red";
-        }
-        pw1Input.style.background = "#ffffff";
+    var postalCode = elements["Postal Code"].value.toUpperCase();
+    var regularExpression = /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] ?\d[ABCEGHJKLMNPRSTVWXYZ]\d$/;
+    if (!postalCode.match(regularExpression)) {
+        alert("Please enter a valid Postal Code!");
+        return false;
     }
-}
-function validateConfirm() {
-    var pw1Input = document.getElementById("pw1");
-    var pw2Input = document.getElementById("pw2");
-    var errorDiv = document.getElementById("confirmError");
-    errorDiv.innerHTML = "Passwords must match";
-        // replace with conditional expression
-    if (pw1Input.value.length < 6 || pw1Input.value.localeCompare(pw2Input.value) !== 0) {
-        errorDiv.style.display = "block";
-        errorDiv.style.color = "#8888ff";
-        if(validateStart>=2){
-            errorDiv.style.color = "red";
-        }  
-        pw2Input.style.background = "#ffffff";      
-    } 
-    else{
-        errorDiv.style.display = "none";
-        errorDiv.innerHTML = "";
-        pw2Input.style.background = "#88ff88";
+    else {
+        elements["Postal Code"].value = postalCode;
     }    
-}
-function validatePostalCode(){
-    var postalCode = document.getElementById("postalCode");
-    var postalCodeError = document.getElementById("postalCodeError");
-    //console.log(pc.value);
-    postalCodeError.innerHTML = "The pattern of postal code is 'a0a0a0'."
-    var RegExp = /^[a-zA-Z][0-9][a-zA-Z][0-9][a-zA-Z][0-9]$/;
-    if(RegExp.test(postalCode.value)){
-        postalCodeError.style.display = "none";
-        postalCode.style.background = "#88ff88";
-        postalCodeError.innerHTML = "";
+    var province = document.getElementById("province").value.toUpperCase();
+    if (!verifyProvince(province)) {
+        alert("Please enter a valid Canadian Province (NS, NF, PE, NB, QC, ON, MN, SK, AB, BC).");
+        return false;
     }
-    else{
-        postalCode.style.background = "#ffffff";
-        postalCodeError.style.display = "block";
-        if(validateStart>=2){
-            postalCodeError.style.color = "red";
-        }
-        else
-        {
-            postalCodeError.style.color = "#8888ff";            
-        }
+    else {
+        document.getElementById("province").value = province;
     }
-}
-
-function validateProvince(){
-    var province = document.getElementById("province");
-    var provinceError = document.getElementById("provinceError");
-    provinceError.innerHTML = "The Province field can't be blank."
-    if(province.value == ""){
-        province.style.background = "#ffffff";
-        provinceError.style.display = "block";
-        provinceError.style.color = "#8888ff";
-        if(validateStart>=2){
-            provinceError.style.color = "red";
-        }
+    var age = elements["Age"];
+    if (age.value < 18) {
+        alert("Sorry, but you must be at least 18 years old to submit this form.");
+        return false;
     }
-    else{
-        provinceError.style.display = "none";
-        province.style.background = "#88ff88";
+    var pass = elements["Password"].value;
+    var confirmPass = elements["Confirm Password"].value;
+    if (pass != confirmPass) {
+        alert("Passwords don't match.")
+        return false;
     }
+    if (!pass.match(/[A-Z]/) || !pass.match(/[0-9]/) || pass.length < 6) {
+        alert("Your password must contain at least 6 characters, one upper-case character and one digit.");
+        return false;
+    }
+    var email = elements["Email"].value
+    if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+        alert("Please enter a valid e-mail.");
+        return false;
+    }
+    alert("Thanks for registering with our website, your customer record was created successfully.");
+    document.forms[0].reset();
+    return false;
 }
 
-function validateAge(){
-    var age = document.getElementById("age");
-    var ageError = document.getElementById("ageError");
-    ageError.innerHTML = "The Age can't be less than 18."
-    if(parseInt(age.value) < 18 || age.value == ""){
-        ageError.style.display = "block";
-        age.style.background = "#ffffff";
-        ageError.style.color = "#8888ff";
-        if(validateStart>=2){
-            ageError.style.color = "red";
-        }
-    }
-    else{
-        ageError.style.display = "none";
-        age.style.background = "#88ff88";
-    }
-}
-
-
-function validateFirstName(){
-    var fn = document.getElementById("fname");
-    var fe = document.getElementById("firstNameError");
-    fe.innerHTML = "The First Name is at least 2 characters."
-    if(fn.value == "" || fn.value.length < 2){
-        fe.style.display = "block";
-        fe.style.color = "#8888ff";
-        if(validateStart>=2){
-            fe.style.color = "red";
-        }
-        fn.style.background = "#ffffff";
-    }
-    else{
-        fe.style.display = "none";
-        fn.style.background = "#88ff88";
-    }
-}
-function validateLastName(){
-    var ln = document.getElementById("lname");
-    var le = document.getElementById("lastNameError");
-    le.innerHTML = "The Last Name is at least 2 characters."
-    //console.log(ln.value);
-    if(ln.value == "" || ln.value.length < 2){
-        le.style.display = "block";
-        le.style.color = "#8888ff";
-        if(validateStart>=2){
-            le.style.color = "red";
-        }
-        ln.style.background = "#ffffff";
-    }
-    else{
-        le.style.display = "none";
-        ln.style.background = "#88ff88";
-    }
-}
-function validateAddress(){
-    var address = document.getElementById("address");
-    var addressError = document.getElementById("addressError");
-    addressError.innerHTML = "The Address is at least 6 characters."
-    //console.log(ln.value);
-    if(address.value == "" || address.value.length < 6){
-        address.style.background = "#ffffff";
-        addressError.style.display = "block";
-        addressError.style.color = "#8888ff";
-        if(validateStart>=2){
-            addressError.style.color = "red";
-        }
-    }
-    else{
-        addressError.style.display = "none";
-        address.style.background = "#88ff88";
-    }
-}
-function validateCity(){
-    var city = document.getElementById("city");
-    var cityError = document.getElementById("cityError");
-    cityError.innerHTML = "The City is at least 2 characters."
-    //console.log(ln.value);
-    if(city.value == "" || city.value.length < 2){
-        city.style.background = "#ffffff";
-        cityError.style.display = "block";
-        cityError.style.color = "#8888ff";
-        if(validateStart>=2){
-            cityError.style.color = "red";
-        }
-    }
-    else{
-        cityError.style.display = "none";
-        city.style.background = "#88ff88";
-    }
-}
-function validateForm(){
-    validateStart += 2;
-    validateFirstName();
-    validateLastName();
-    validateAddress();
-    validateCity();
-    validatePostalCode();
-    
-    validateProvince();
-    validateAge();
-    validatePassword();
-    validateConfirm();    
-    validateEmail();
-}
-function createEventListeners() {
-   
-   var fname = document.getElementById("fname");
-   if (fname.addEventListener) {
-     fname.addEventListener("keyup", validateFirstName, false); 
-   } else if (fname.attachEvent)  {
-     fname.attachEvent("onkeyup", validateFirstName);
-   }
-   var lname = document.getElementById("lname");
-   if (lname.addEventListener) {
-     lname.addEventListener("keyup", validateLastName, false); 
-   } else if (lname.attachEvent)  {
-     lname.attachEvent("onkeyup", validateLastName);
-   }
-   var address = document.getElementById("address");
-   if (address.addEventListener) {
-     address.addEventListener("keyup", validateAddress, false); 
-   } else if (address.attachEvent)  {
-     address.attachEvent("onkeyup", validateAddress);
-   }
-   var city = document.getElementById("city");
-   if (city.addEventListener) {
-     city.addEventListener("keyup", validateCity, false); 
-   } else if (city.attachEvent)  {
-     city.attachEvent("onkeyup", validateCity);
-   }
-   var province = document.getElementById("province");
-   if (province.addEventListener) {
-     province.addEventListener("keyup", validateProvince, false); 
-   } else if (province.attachEvent)  {
-     province.attachEvent("onkeyup", validateProvince);
-   }
-   var postalCode = document.getElementById("postalCode");
-   if (postalCode.addEventListener) {
-     postalCode.addEventListener("keyup", validatePostalCode, false); 
-   } else if (postalCode.attachEvent)  {
-     postalCode.attachEvent("onkeyup", validatePostalCode);
-   }
-   var age = document.getElementById("age");
-   if (age.addEventListener) {
-     age.addEventListener("keyup", validateAge, false); 
-   } else if (age.attachEvent)  {
-     age.attachEvent("onkeyup", validateAge);
-   }
-   var password = document.getElementById("pw1");
-   if (password.addEventListener) {
-     password.addEventListener("keyup", validatePassword, false); 
-   } else if (password.attachEvent)  {
-     password.attachEvent("onkeyup", validatePassword);
-   }
-   var confirm = document.getElementById("pw2");
-   if (confirm.addEventListener) {
-     confirm.addEventListener("keyup", validateConfirm, false); 
-   } else if (confirm.attachEvent)  {
-     confirm.attachEvent("onkeyup", validateConfirm);
-   }
-   var email = document.getElementById("email");
-   if (email.addEventListener) {
-     email.addEventListener("keyup", validateEmail, false); 
-   } else if (email.attachEvent)  {
-     email.attachEvent("onkeyup", validateEmail);
-   }
-
-   
-}
-
-function setUpPages() {
-    createEventListeners();    
-}
-
-function reload(){
-    document.location.reload();
-}
-
-if (window.addEventListener) {
-    window.addEventListener("load", setUpPages, false);
-} else if (window.attachEvent) {
-    window.attachEvent("onload", setUpPages, validateEmail);
+function verifyProvince(value) {
+    var provinces = ['NS', 'NF', 'PE', 'NB', 'QC', 'ON', 'MN', 'SK', 'AB', 'BC'];
+    return provinces.includes(value);
 }
 
