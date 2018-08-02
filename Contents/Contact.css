@@ -1,0 +1,18 @@
+body{
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: bisque;
+}
+article {
+    border-style: solid;
+    border-color: red;
+    border-width: 10px;
+    padding-top: 50px;
+    padding-right: 5px;
+    padding-bottom: 50px;
+    padding-left: 5px;
+}
+h2 {
+    font-size: 50px;
+}

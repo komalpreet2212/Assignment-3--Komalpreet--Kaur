@@ -1,0 +1,8 @@
+h1 {
+    font-size: 70px;
+}
+li {
+	font-size: 15px;
+	font-family: algerian;
+	text-underline-position: below;
+}
